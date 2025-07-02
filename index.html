@@ -6,42 +6,30 @@
 	<title>Document</title>
 </head>
 <body>
-	<div id="informacion">
-
-	</div>
+	<div id="informacion"></div>
 
 	<script>
-		info=[
-  {
-    nombre: "Juan Pérez",
-    edad: 30,
-    ciudad: "Monterrey"
-  },
-  {
-    nombre: "María García",
-    edad: 25,
-    ciudad: "Guadalajara"
-  },
-  {
-    nombre: "Carlos López",
-    edad: 35,
-    ciudad: "Ciudad de México"
-  }
-]
-		lst=localStorage.setItem("lainfo");
-		console.log(typeof(lst));
-		
-		lst=JSON.parse(localStorage.getItem("lainfo"));
-		console.log(typeof(lst));
+		// Tu arreglo de objetos
+		const info = [
+			{ nombre: "Juan Pérez", edad: 30, ciudad: "Monterrey" },
+			{ nombre: "María García", edad: 25, ciudad: "Guadalajara" },
+			{ nombre: "Carlos López", edad: 35, ciudad: "Ciudad de México" }
+		];
 
-		lst.forEach(element=>{
-			let elements=document.getElementById("informacion");
-			let div=document.createElement("div");
-			div.innerHTML=element.nombre +" "+element.edad +" "+element.ciudad;
-			elements.appendChild(div);
+		// Guardar el objeto convertido a cadena JSON
+		localStorage.setItem("lainfo", JSON.stringify(info));
+
+		// Recuperar el objeto desde localStorage y parsear para volver a objeto
+		const lst = JSON.parse(localStorage.getItem("lainfo"));
+
+		// Mostrar en pantalla
+		lst.forEach(element => {
+			const contenedor = document.getElementById("informacion");
+			const div = document.createElement("div");
+			div.textContent = `${element.nombre} ${element.edad} ${element.ciudad}`;
+			contenedor.appendChild(div);
 		});
-
 	</script>
-
 </body>
 </html>
+
